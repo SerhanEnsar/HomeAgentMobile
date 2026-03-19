@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
-import { getInfo } from "../api";
+import { getInfo } from "../../lib/api";
 
 export default function SettingsScreen() {
   const [data, setData] = useState<any>(null);

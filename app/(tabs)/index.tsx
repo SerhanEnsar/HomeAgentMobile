@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
-import { getStatus } from "../api";
+import { getStatus } from "../../lib/api";
 
 export default function HomeScreen() {
   const [data, setData] = useState<any>(null);
