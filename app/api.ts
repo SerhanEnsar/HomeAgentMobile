@@ -7,6 +7,6 @@ export async function getStatus() {
 }
 
 export async function getInfo() {
-  const res = await fetch(`${BASE_URL}/api/info`);
+  const res = await fetch(`${BASE_URL}/api/info?api_key=${API_KEY}`);
   return res.json();
 }
