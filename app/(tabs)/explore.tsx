@@ -1,3 +1,5 @@
+import * as FileSystem from 'expo-file-system/legacy';
+import * as Sharing from 'expo-sharing';
 import { useState } from "react";
 import {
   ActivityIndicator,
@@ -17,6 +19,15 @@ export default function FilesScreen() {
   const [currentPath, setCurrentPath] = useState("");
   const [loading, setLoading] = useState(false);
   const [view, setView] = useState<"devices" | "files">("devices");
+
+  async function downloadFile(name: string, path: string) {
+    const fullPath = currentPath ? `${currentPath}/${name}` : name;
+    const url = `${BASE_URL}/api/files/download?mount=${encodeURIComponent(currentMount)}&path=${encodeURIComponent(fullPath)}`;
+    const localUri = FileSystem.documentDirectory + name;
+
+    const { uri } = await FileSystem.downloadAsync(url, localUri);
+    await Sharing.shareAsync(uri);
+  }
 
   async function loadDevices() {
     setLoading(true);
@@ -111,9 +122,21 @@ export default function FilesScreen() {
                 }
               }}
             >
-              <Text style={styles.itemName}>
-                {item.type === "dir" ? "📁" : "📄"} {item.name}
-              </Text>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Text style={styles.itemName}>
+                  {item.type === 'dir' ? '📁' : '📄'} {item.name}
+                </Text>
+                {item.type === 'file' && (
+                  <TouchableOpacity
+                    onPress={(e) => {
+                      e.stopPropagation();
+                      downloadFile(item.name, currentPath);
+                    }}
+                    style={styles.dlBtn}>
+                    <Text style={styles.dlText}>⬇</Text>
+                  </TouchableOpacity>
+                )}
+              </View>
               {item.size != null && (
                 <Text style={styles.itemMeta}>
                   {(Number(item.size) / 1024).toFixed(1)} KB
@@ -179,4 +202,16 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginTop: 4,
   },
+
+  dlBtn: {
+    backgroundColor: '#1e3a5f',
+    borderRadius: 8,
+    padding: 6,
+  },
+  dlText: {
+    color: '#3b82f6',
+    fontSize: 16,
+  },
 });
+
+
