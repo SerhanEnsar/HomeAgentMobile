@@ -1,6 +1,8 @@
+import { router } from 'expo-router';
 import { useEffect, useState } from "react";
-import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { getInfo } from "../../lib/api";
+import { logout } from '../../lib/auth';
 
 export default function SettingsScreen() {
   const [data, setData] = useState<any>(null);
@@ -37,6 +39,14 @@ export default function SettingsScreen() {
           <Text style={styles.value}>{item.value || "—"}</Text>
         </View>
       ))}
+      <TouchableOpacity
+        style={styles.logoutBtn}
+        onPress={async () => {
+          await logout();
+          router.replace('/login');
+        }}>
+        <Text style={styles.logoutText}>Çıkış Yap</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -72,5 +82,19 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "700",
     color: "#e2e8f0",
+  },
+  logoutBtn: {
+    backgroundColor: 'rgba(239,68,68,0.1)',
+    borderWidth: 1,
+    borderColor: 'rgba(239,68,68,0.3)',
+    borderRadius: 12,
+    padding: 14,
+    alignItems: 'center',
+    marginTop: 12,
+  },
+  logoutText: {
+    color: '#f87171',
+    fontWeight: '700',
+    fontSize: 15,
   },
 });
