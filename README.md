@@ -1,50 +1,75 @@
-# Welcome to your Expo app 👋
+# 📱 HomeAgent Mobile — Cross-Platform Companion App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+HomeAgent Mobile is a cross-platform mobile client for the [HomeAgent](https://github.com/serhanensar/HomeAgent) smart home system, built with **Expo (React Native)**. It runs on both Android and iOS and provides system monitoring and device info from your Raspberry Pi.
 
-## Get started
+> ⚠️ **Status:** This is an older prototype. The actively maintained Android client is [HomeAgent-Mobile-K](https://github.com/serhanensar/HomeAgent-Mobile-K) (Jetpack Compose). This project is preserved for reference.
 
-1. Install dependencies
+## ✨ Features
 
-   ```bash
-   npm install
-   ```
+- **Status Page** — CPU, RAM, Disk usage from the HomeAgent backend
+- **Info Page** — Pi hostname, IP address, Wi-Fi SSID
+- **Cross-Platform** — Runs on Android, iOS, and Expo Go
 
-2. Start the app
+## 🛠 Tech Stack
 
-   ```bash
-   npx expo start
-   ```
+| Layer | Technology |
+|---|---|
+| Framework | Expo (React Native) |
+| Language | TypeScript |
+| Navigation | Expo Router (file-based) |
+| Networking | Fetch API |
 
-In the output, you'll find options to open the app in a
+## 🚀 Getting Started
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+### Prerequisites
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- Node.js 18+
+- Expo CLI
+- A running [HomeAgent](https://github.com/serhanensar/HomeAgent) backend
 
-## Get a fresh project
-
-When you're ready, run:
+### Installation
 
 ```bash
-npm run reset-project
+git clone https://github.com/serhanensar/HomeAgentMobile.git
+cd HomeAgentMobile
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### Configuration
 
-## Learn more
+Create a `.env` file in the project root (never commit this file):
 
-To learn more about developing your project with Expo, look at the following resources:
+```env
+EXPO_PUBLIC_BASE_URL=http://<PI_IP>:8000
+EXPO_PUBLIC_API_KEY=your_api_key_here
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+> The API key must match the `API_KEY` set in your HomeAgent `.env` file.
 
-## Join the community
+### Run
 
-Join our community of developers creating universal apps.
+```bash
+npx expo start
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Open in:
+- **Expo Go** app (scan QR code)
+- **Android emulator** (`a` key in terminal)
+- **iOS simulator** (`i` key in terminal)
+
+## 🔒 Security
+
+- API key and server URL are loaded from environment variables — never hardcoded.
+- `.env` is listed in `.gitignore` and must not be committed.
+
+## 🔗 HomeAgent Ecosystem
+
+| Project | Description |
+|---|---|
+| [HomeAgent](https://github.com/serhanensar/HomeAgent) | Python FastAPI backend (Raspberry Pi) |
+| [HomeAgent-Mobile-K](https://github.com/serhanensar/HomeAgent-Mobile-K) | Actively maintained Android app |
+| [HomeAgent_Wear](https://github.com/serhanensar/HomeAgent_Wear) | Wear OS companion app |
+
+## 📄 License
+
+MIT
