@@ -70,6 +70,10 @@ Open in:
 | [HomeAgent-Mobile-K](https://github.com/serhanensar/HomeAgent-Mobile-K) | Actively maintained Android app |
 | [HomeAgent_Wear](https://github.com/serhanensar/HomeAgent_Wear) | Wear OS companion app |
 
+## 👨‍💻 Developer
+
+Created and developed by **[Serhan Ensar](https://github.com/SerhanEnsar)**.
+
 ## 📄 License
 
 MIT
