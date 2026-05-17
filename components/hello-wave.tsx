@@ -1,3 +1,4 @@
+// Copyright (c) 2026 Serhan Ensar. All rights reserved.
 import Animated from 'react-native-reanimated';
 
 export function HelloWave() {

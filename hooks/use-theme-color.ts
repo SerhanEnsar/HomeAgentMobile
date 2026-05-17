@@ -1,3 +1,4 @@
+// Copyright (c) 2026 Serhan Ensar. All rights reserved.
 /**
  * Learn more about light and dark modes:
  * https://docs.expo.dev/guides/color-schemes/

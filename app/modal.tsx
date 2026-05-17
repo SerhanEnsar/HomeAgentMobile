@@ -1,3 +1,4 @@
+// Copyright (c) 2026 Serhan Ensar. All rights reserved.
 import { Link } from 'expo-router';
 import { StyleSheet } from 'react-native';
 
